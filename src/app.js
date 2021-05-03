@@ -52,8 +52,14 @@ App = {
 
   loadAccount: async () => {
     // Set the current blockchain account
-      App.account = web3.eth.accounts[0]
+
+    //   App.account = web3.eth.accounts[0]
+
     //   console.log(App.account)
+    window.ethereum.on('accountsChanged', function (accounts) {
+      web3.eth.defaultAccount = accounts[0]
+      App.account = web3.eth.defaultAccount
+    })
   },
 
   loadContract: async () => {
